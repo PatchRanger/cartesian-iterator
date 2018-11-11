@@ -1,0 +1,20 @@
+{
+  "name": "PatchRanger/cartesian-iterator",
+  "description": "Cartesian iterator",
+  "type": "library",
+  "license": "GPLv3",
+  "authors": [
+    {
+      "name": "Dmitry Danilson",
+      "email": "patchranger@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PatchRanger\\": "src"
+    }
+  }
+}
