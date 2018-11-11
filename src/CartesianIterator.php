@@ -30,11 +30,6 @@ class CartesianIterator extends \MultipleIterator
         }
     }
 
-    public function key()
-    {
-        return array_sum(parent::key());
-    }
-
     public function next()
     {
         $this->applyNext();
