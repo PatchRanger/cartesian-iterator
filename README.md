@@ -1,2 +1,2 @@
 # cartesian-iterator
-Iterator, returning cartesian product of associate array of iterators. See https://en.wikipedia.org/wiki/Cartesian_product .
+Iterator, returning the cartesian product of associative array of iterators. See https://en.wikipedia.org/wiki/Cartesian_product .
