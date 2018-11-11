@@ -7,7 +7,7 @@ class CartesianIterator extends \MultipleIterator
     /** @var \Iterator[] */
     private $iterators;
 
-    public function __construct($flags)
+    public function __construct($flags = self::MIT_NEED_ANY|self::MIT_KEYS_NUMERIC)
     {
         parent::__construct($flags);
         $this->setFlags($flags|static::MIT_NEED_ALL);
