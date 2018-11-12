@@ -5,7 +5,7 @@ namespace PatchRanger;
 class CartesianIterator extends \MultipleIterator
 {
     /** @var \Iterator[] */
-    private $iterators;
+    protected $iterators;
 
     public function __construct($flags = self::MIT_NEED_ANY|self::MIT_KEYS_NUMERIC)
     {
