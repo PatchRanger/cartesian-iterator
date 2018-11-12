@@ -35,7 +35,7 @@ class CartesianIterator extends \MultipleIterator
         $this->applyNext();
     }
 
-    private function applyNext(int $index = 0): void
+    private function applyNext(int $index = 0)
     {
         $iterator = $this->iterators[$index];
         $iterator->next();
