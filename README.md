@@ -23,3 +23,33 @@ $cartesianIterator->attachIterator(new ArrayIterator(['foo', 'bar']));
 $result = iterator_to_array($cartesianIterator);
 print_r($result);
 ```
+Result:
+```
+Array
+(
+    [0] => Array
+        (
+            [test] => 1
+            [1] => foo
+        )
+
+    [1] => Array
+        (
+            [test] => 2
+            [1] => foo
+        )
+
+    [2] => Array
+        (
+            [test] => 1
+            [1] => bar
+        )
+
+    [3] => Array
+        (
+            [test] => 2
+            [1] => bar
+        )
+
+)
+```
