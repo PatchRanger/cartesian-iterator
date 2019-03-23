@@ -5,32 +5,47 @@ namespace PatchRanger;
 class CartesianIterator extends \MultipleIterator
 {
     /** @var \Iterator[] */
-    protected $iterators;
+    protected $iterators = [];
 
     /** @var int */
     protected $key = 0;
 
-    public function __construct($flags = self::MIT_NEED_ANY|self::MIT_KEYS_NUMERIC)
+    /** @var string[] */
+    protected $infosHashMap = [];
+
+    public function __construct()
     {
-        parent::__construct($flags);
-        $this->setFlags($flags|static::MIT_NEED_ALL);
+        parent::__construct(static::MIT_NEED_ALL|static::MIT_KEYS_ASSOC);
     }
 
     public function attachIterator(\Iterator $iterator, $infos = null): void
     {
-        parent::attachIterator($iterator, $infos);
         $this->iterators[] = $iterator;
+        if ($infos === null) {
+            $infos = count($this->iterators) - 1;
+        }
+        if (isset($this->infosHashMap[$infos])) {
+            throw new \InvalidArgumentException("Iterator with the same key has been already added: {$infos}");
+        }
+        $this->infosHashMap[$infos] = spl_object_hash($iterator);
+        parent::attachIterator($iterator, $infos);
     }
 
     public function detachIterator(\Iterator $iterator): void
     {
+        if (!$this->containsIterator($iterator)) {
+            return;
+        }
         parent::detachIterator($iterator);
+        $iteratorHash = spl_object_hash($iterator);
         foreach ($this->iterators as $index => $iteratorAttached) {
-            if ($iterator === $iteratorAttached) {
+            if ($iteratorHash === spl_object_hash($iteratorAttached)) {
                 unset($this->iterators[$index]);
                 break;
             }
         }
+        $infos = array_flip($this->infosHashMap)[spl_object_hash($iterator)];
+        unset($this->infosHashMap[$infos]);
     }
 
     public function key(): int
