@@ -48,9 +48,9 @@ class CartesianIterator extends \MultipleIterator
         unset($this->infosHashMap[$infos]);
     }
 
-    public function key(): int
+    public function key(): array
     {
-        return $this->key;
+        return [$this->key];
     }
 
     public function next(): void
