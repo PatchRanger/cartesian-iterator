@@ -23,7 +23,7 @@ $cartesianIterator->attachIterator(new ArrayIterator([1,2]), 'test');
 // No second argument means incremental numeration (indexed).
 $cartesianIterator->attachIterator(new ArrayIterator(['foo', 'bar']));
 
-$result = iterator_to_array($cartesianIterator);
+$result = iterator_to_array($cartesianIterator, false);
 print_r($result);
 ```
 Result:
